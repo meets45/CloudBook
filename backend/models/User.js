@@ -1,5 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose'); //imported mongoose
 
+//Initialized userSchema
 const userSchema = new Schema({
     name:{
         type: String,
@@ -20,4 +21,5 @@ const userSchema = new Schema({
     }
 });
 
+//exported notes schema which takes name of model and schema as input
 module.exports = mongoose.model('user', userSchema);

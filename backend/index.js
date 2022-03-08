@@ -5,6 +5,8 @@ connectToMongo(); //called connectToMongo which makes connection to Database
 const app = express() 
 const port = 3001 //initialized express server on port:3001
 
+app.use(express.json())
+
 //Available Routes
 
 app.use('/api/auth', require('./routes/auth'))

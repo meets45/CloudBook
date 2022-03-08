@@ -1,5 +1,5 @@
 const mongoose = require('mongoose'); //imported mongoose
-
+const { Schema } = mongoose;
 //Initialized userSchema
 const userSchema = new Schema({
     name:{
@@ -17,9 +17,11 @@ const userSchema = new Schema({
     },
     date:{
         type: Date,
-        required: Date.now
+        default: Date.now
     }
 });
 
+const User = mongoose.model('user', userSchema);
+User.createIndexes();
 //exported notes schema which takes name of model and schema as input
 module.exports = mongoose.model('user', userSchema);

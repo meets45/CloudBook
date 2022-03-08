@@ -1,7 +1,7 @@
 const mongoose = require('mongoose'); //imported mongoose
 
 //connection string for MongoDB
-const mongoURI = "mongodb://localhost:27017/?readPreference=primary&appname=MongoDB%20Compass&ssl=false"
+const mongoURI = "mongodb://localhost:27017/mynotebook?readPreference=primary&appname=MongoDB%20Compass&ssl=false"
 
 //function for connecting to MongoDB
 const connectToMongo = () =>{

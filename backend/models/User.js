@@ -22,6 +22,5 @@ const userSchema = new Schema({
 });
 
 const User = mongoose.model('user', userSchema);
-User.createIndexes();
 //exported notes schema which takes name of model and schema as input
 module.exports = mongoose.model('user', userSchema);

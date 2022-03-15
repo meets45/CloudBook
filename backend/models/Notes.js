@@ -1,24 +1,29 @@
-const mongoose = require('mongoose'); //imported mongoose
+const mongoose = require("mongoose"); //imported mongoose
+const { Schema } = mongoose;
 
 //Initialized notesSchema
 const notesSchema = new Schema({
-    title:{
-        type: String,
-        required: true
-    },
-    description:{
-        type: String,
-        required: true,
-    },
-    tag:{
-        type: String,
-        default: "General"
-    },
-    date:{
-        type: Date,
-        required: Date.now
-    }
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "user",
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  tag: {
+    type: String,
+    default: "General",
+  },
+  date: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
- //exported notes schema which takes name of model and schema as input
-module.exports = mongoose.model('notes', notesSchema);
+//exported notes schema which takes name of model and schema as input
+module.exports = mongoose.model("notes", notesSchema);

@@ -4,6 +4,7 @@ const { Schema } = mongoose;
 //Initialized notesSchema
 const notesSchema = new Schema({
   user: {
+    //to store notes of specific users in his account
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },

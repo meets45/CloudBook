@@ -16,5 +16,5 @@ app.use('/api/notes', require('./routes/notes'))
 //Index.js is started using nodemon .\index.js
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`CloudBook backend listening on port ${port}`)
 })

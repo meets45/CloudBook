@@ -108,7 +108,7 @@ router.post(
 router.post("/getuser", fetchuser, async (req, res) => {
   try {
     //fetches all details of user other than password using fetchuser middleware
-    userID = req.user.id;
+    let userID = req.user.id;
     const user = await User.findById(userID).select("-password");
     res.send(user);
   } catch (error) {

@@ -11,7 +11,7 @@ const getNotes = async() =>{
     const response = await fetch(url, {
       method: 'GET',
       headers: {
-        'auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjIyOGI0YTMyZWE4OWQyOWI5YmQ4Nzc0In0sImlhdCI6MTY0NzM2ODUzN30.5YQE3UJOa2RDMqNLy4BU_yqhwpn-YcmtppxqS0kGsMk'
+        'auth-token': localStorage.getItem('token')
       },
     });
  const json = await response.json();
@@ -24,7 +24,7 @@ setNotes(json);
       method: 'POST',
       headers: {
         'Content-Type':'application/json',
-        'auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjIyOGI0YTMyZWE4OWQyOWI5YmQ4Nzc0In0sImlhdCI6MTY0NzM2ODUzN30.5YQE3UJOa2RDMqNLy4BU_yqhwpn-YcmtppxqS0kGsMk'
+        'auth-token':localStorage.getItem('token')
       },
       body: JSON.stringify({title, description, tag})
     });
@@ -32,13 +32,14 @@ setNotes(json);
     const note = await response.json();
     setNotes(notes.concat(note));
   };
+
   //Edit a note
   const editNote = async (id, title, description, tag) => { 
     const response = await fetch(`${host}/api/notes/updatenotes/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type':'application/json',
-        'auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjIyOGI0YTMyZWE4OWQyOWI5YmQ4Nzc0In0sImlhdCI6MTY0NzM2ODUzN30.5YQE3UJOa2RDMqNLy4BU_yqhwpn-YcmtppxqS0kGsMk'
+        'auth-token':localStorage.getItem('token')
       },
       body: JSON.stringify({id, title, description, tag})
     });
@@ -56,6 +57,7 @@ setNotes(json);
     }
     setNotes(newNotes);
   };
+  
   //Delete a note
   const deleteNote = async (id) => {
     let url = `${host}/api/notes/deletenotes/${id}` 
@@ -63,7 +65,7 @@ setNotes(json);
       method: 'DELETE',
       headers: {
         'Content-Type':'application/json',
-        'auth-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjIyOGI0YTMyZWE4OWQyOWI5YmQ4Nzc0In0sImlhdCI6MTY0NzM2ODUzN30.5YQE3UJOa2RDMqNLy4BU_yqhwpn-YcmtppxqS0kGsMk'
+        'auth-token':localStorage.getItem('token')
       }
     });
     const newNotes = notes.filter((note) => {
@@ -73,8 +75,19 @@ setNotes(json);
     console.log(json);
     setNotes(newNotes);
   };
+  const [user, setUser] = useState({name: "", email: "", date: ""})
+    const getUser = async() => {
+        const response = await fetch("http://localhost:3001/api/auth/getuser", {
+          method: 'POST',
+          headers: {
+            'auth-token': localStorage.getItem('token')
+          },
+        });
+     const json = await response.json();
+     setUser({name: json.name, email: json.email, date: json.date})
+      }
   return (
-    <noteContext.Provider value={{ notes, addNote, editNote, deleteNote, getNotes }}>
+    <noteContext.Provider value={{ notes, addNote, editNote, deleteNote, getNotes, getUser, user }}>
       {props.children}
     </noteContext.Provider>
   );

@@ -2,6 +2,7 @@ import React from "react";
 
 function Alert(props) {
     const capitalize = (word) =>{
+      // Capitalizes first character of word
       if(word==="danger"){
         word="error";
       }
@@ -10,7 +11,8 @@ function Alert(props) {
     }
   return (
     <div style={{height:"50px"}}>
-    {props.alert && <div>
+    { /* It only displays alert if it is passed through props*/}
+    {props.alert && <div> 
       <div className={`alert alert-${props.alert.type} alert-dismissible fade show`} role="alert">
           <strong>{capitalize(props.alert.type)}: </strong> {props.alert.msg}
       </div>

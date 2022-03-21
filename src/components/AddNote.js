@@ -2,16 +2,18 @@ import React, { useContext, useState } from "react";
 import noteContext from "../context/notes/noteContext";
 
 const AddNote = (props) => {
-  const context = useContext(noteContext);
-  const { addNote } = context;
+  const context = useContext(noteContext); // Context initialized
+  const { addNote } = context; // addNote function from NoteState is used through context
   const [note, setNote] = useState({ title: "", description: "", tag: "" });
   const handleAddNote = (e) => {
+    // Adds note when user clicks on add note 
     e.preventDefault();
     addNote(note.title, note.description, note.tag);
     setNote({ title: "", description: "", tag: "" });
     props.showAlert("Note added successfully!", "success");
   };
   const onChange = (e) => {
+    // Updates note state when text is changed
     setNote({ ...note, [e.target.name]: e.target.value });
   };
   return (
@@ -65,6 +67,7 @@ const AddNote = (props) => {
           </div>
 
           <button
+            // Button stays disabled if length of title and description is less than 5
             disabled={note.title.length < 5 || note.description.length < 5}
             type="submit"
             className="btn btn-primary"

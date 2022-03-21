@@ -1,6 +1,7 @@
 import React from "react";
 
 const About = () => {
+  //About Page of CloudBook
   return (
     <>
       <h1 className="my-3">About CloudBook</h1>
@@ -10,8 +11,6 @@ const About = () => {
             <button
               className="accordion-button"
               type="button"
-              // style={myStyle}
-
               data-bs-toggle="collapse"
               data-bs-target="#collapseOne"
               aria-expanded="true"
@@ -29,10 +28,11 @@ const About = () => {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body">
-            CloudBook&trade; is a Notes creating app. The notes are stored on cloud
-        server so they are safe and secure. User can SignUp and create thier
-        account and they could access thier created notes from anywhere in the
-        world through Internet            </div>
+              CloudBook&trade; is a Notes creating app. The notes are stored on
+              cloud server so they are safe and secure. User can SignUp and
+              create thier account and they could access thier created notes
+              from anywhere in the world through Internet{" "}
+            </div>
           </div>
         </div>
         <div className="accordion-item">
@@ -59,7 +59,9 @@ const About = () => {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body">
-              CloudBook is a free notes creating tool that provides user the functionality to create notes securely, It is useful beacuse notes can be accessible from anywhere in the world through your account.
+              CloudBook is a free notes creating tool that provides user the
+              functionality to create notes securely, It is useful beacuse notes
+              can be accessible from anywhere in the world through your account.
             </div>
           </div>
         </div>
@@ -85,9 +87,9 @@ const About = () => {
             data-bs-parent="#accordionExample"
           >
             <div className="accordion-body">
-              CloudBook works in any browser, be it chrome, safari,
-              internet explorer, firefox or edge. It also works in mobile
-              devices beautifully as it is a responsive web app.
+              CloudBook works in any browser, be it chrome, safari, internet
+              explorer, firefox or edge. It also works in mobile devices
+              beautifully as it is a responsive web app.
             </div>
           </div>
         </div>

@@ -1,18 +1,25 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+
 const Signup = (props) => {
-  let history = useNavigate();
+  let history = useNavigate(); // use navigate hook to navigate user to specific page
+  
   const [credentials, setCredentials] = useState({
     name: "",
     email: "",
     password: "",
     cpassword: ""
   });
+  
   const onChange = (e) => {
+    // changes value of credentials state if value is changed
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = async (e) => {
+    // called when user clicks on submit button
+    // checks if user already exists or length of password is less than 8
     e.preventDefault();
     const response = await fetch("http://localhost:3001/api/auth/createuser", {
       method: "POST",
@@ -26,11 +33,15 @@ const Signup = (props) => {
       }),
     });
     const json = await response.json();
+
+    // if success is true then auth-token is saved in localStorage 
     if (json.success) {
       props.showAlert("Account created successfully!", "success");
       localStorage.setItem("token", json.authToken);
       history("/");
-    } else {
+    } 
+    // else alert is shown 
+    else {
       props.showAlert("Please fill details correctly!", "danger");
     }
   };
@@ -97,7 +108,7 @@ const Signup = (props) => {
           />
         </div>
         <button type="submit" className="btn btn-primary">
-          Submit
+          Create Account
         </button>
       </form>
     </div>

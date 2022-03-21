@@ -4,11 +4,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 const Navbar = (props) => {
   let location = useLocation();
   let history = useNavigate();
+
   const handleLogout = () => {
+    // If user clicks on logout then auth-token is removed from the storage and user is redirected to login page
     localStorage.removeItem("token");
     props.showAlert("Logged out successfully!", "success");
     history("/login");
   };
+
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
@@ -55,6 +58,7 @@ const Navbar = (props) => {
               </li>
             </ul>
             {!localStorage.getItem("token") ? (
+              // if auth-token is not present in user's storage the login and sign up button is shown
               <form>
                 <Link
                   className="btn btn-primary mx-1 my-1"
@@ -72,6 +76,7 @@ const Navbar = (props) => {
                 </Link>
               </form>
             ) : (
+              // else user is shown the home page and profile button
               <form className="d-flex align-items-right">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
